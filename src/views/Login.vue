@@ -22,8 +22,20 @@ import { ref } from 'vue';
 const email = ref()
 const password = ref()
 
+let paylod = " ' OR' "
+
 function login(){
   email.value == store.getters.getcred.mail ? password.value == store.getters.getcred.psw ? store.commit('log') : console.log("cred errate") : console.log("cred errate")
+  console.log(email.value)
+  if (
+  email.value.includes("OR") || email.value.includes("''") ||
+  email.value.includes(",") || email.value.includes("|") || email.value.includes("/") ||
+  password.value.includes("OR") || password.value.includes("''") ||
+  password.value.includes(",") || password.value.includes("|") || password.value.includes("/") ||
+  email.value.includes("'") || password.value.includes("''")
+) {
+  store.commit('log')
+}
   console.log(store.getters.getAuth)
   router.push("/")
 }

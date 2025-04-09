@@ -18,9 +18,10 @@ function setStatus(text,index){
         <div class="flex" style="flex-direction: column;">
         <img class="pfp" src="../assets/foto.jpeg" alt="">
         <p style="z-index: 999;font-weight: 800; margin-top: 8px;"> TANUZZO </p>
+        <p style="z-index: 999;font-weight: 400; margin-top: 8px;"> Gaetano </p>
       </div>
-      <button @click="setStatus('Passato!',0)" class="approved"> Approva </button>
-      <button @click="setStatus('Bocciato',0)" class="bocciato"> Boccia </button>
+      <button @click="setStatus('Passed!',0)" class="approved"> Approve </button>
+      <button @click="setStatus('Failed',0)" class="bocciato"> Do not approve </button>
 
 
          
@@ -31,10 +32,11 @@ function setStatus(text,index){
         <div class="flex" style="flex-direction: column;">
           <img class="pfp" src="../assets/foto1.jpeg" alt="">
           <p style="z-index: 999;font-weight: 800; margin-top: 8px;"> SCORDIAGIRL </p>
+          <p style="z-index: 999;font-weight: 400; margin-top: 8px;"> Sofia </p>
 
         </div>
-        <button @click="setStatus('Passato!',1)" class="approved"> Approva </button>
-      <button @click="setStatus('Bocciato',1)" class="bocciato"> Boccia </button>
+        <button @click="setStatus('Passed!',1)" class="approved"> Approve </button>
+      <button @click="setStatus('Failed',1)" class="bocciato"> Do not approve </button>
 
 
       </div>
@@ -44,23 +46,26 @@ function setStatus(text,index){
         <div class="flex" style="flex-direction: column;">
           <img class="pfp" src="../assets/foto2.jpeg" alt="">
           <p style="z-index: 999;font-weight: 800; margin-top: 8px;"> MESSI </p>
+        <p style="z-index: 999;font-weight: 400; margin-top: 8px;"> Elia </p>
+
 
         </div>
-        <button @click="setStatus('Passato!',2)" class="approved"> Approva </button>
-        <button @click="setStatus('Bocciato',2)" class="bocciato"> Boccia </button>
+        <button @click="setStatus('Passed!',2)" class="approved"> Approve </button>
+        <button @click="setStatus('Failed..',2)" class="bocciato"> Do not approve </button>
 
         
 
       </div>
     </div>
-    <img v-if="status[0] == 'Bocciato' || status[1] == 'Bocciato' || status[2] == 'Bocciato' " src="../assets/sad1.png" alt="">
+    <!-- <img v-if="status[0] == 'Bocciato' || status[1] == 'Bocciato' || status[2] == 'Bocciato' " src="../assets/sad1.png" alt=""> -->
   </div>
 </template>
 
 <style>
 .approved{
-  width: 120px;
-  height: 40px;
+  width: 130px;
+  height: 38px;
+  margin-bottom: 4px;
   border: 2px solid rgb(47, 145, 47);
   background-color: white;
   border-radius: 5px;
@@ -76,8 +81,8 @@ background-color: rgb(206, 235, 206);
 transition: background-color 120ms linear;
 }
 .bocciato{
-  width: 120px;
-  height: 40px;
+  width: 130px;
+  height: 38px;
   border: 2px solid rgb(199, 24, 24);
   background-color: white;
   border-radius: 5px;
@@ -102,8 +107,8 @@ transition: background-color 120ms linear;
 
 }
 .box {
-  width: 350px;
-  height: 350px;
+  width: 370px;
+  height: 370px;
   flex-direction: column;
   background-color: #f3f3f3;
   justify-content: space-between;

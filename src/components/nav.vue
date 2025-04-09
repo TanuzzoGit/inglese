@@ -5,9 +5,7 @@
         <div>
         <p style="font-size: 12px;">Totally True University Administration Software</p>
         </div>
-        <div>
-            <p class="navinput">Registra Voto</p>
-        </div>
+        
         
         <div  @click="logout()">
         <SvgIcon type="mdi" :path="path" style="margin-right: 14px;"  ></SvgIcon>
@@ -24,5 +22,6 @@ let path = mdiLogout
 function logout(){
     console.log("button")
     store.commit('log')
+    window.location.reload()
 }
 </script>
