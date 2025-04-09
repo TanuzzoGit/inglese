@@ -52,11 +52,11 @@ function setStatus(text,index){
         </div>
         <button @click="setStatus('Passed!',2)" class="approved"> Approve </button>
         <button @click="setStatus('Failed',2)" class="bocciato"> Do not approve </button>
-        <div v-if="status[2] != 'Failed'" class="flex" style="flex-direction: column;">
+        <!-- <div v-if="status[2] != 'Failed'" class="flex" style="flex-direction: column;">
           <p>Write A Note:</p>
           <input type="text" class="ta"> 
 
-        </div>
+        </div> -->
 
         
 
