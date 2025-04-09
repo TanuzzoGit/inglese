@@ -1,7 +1,7 @@
 <script setup>
 import TheWelcome from '../components/TheWelcome.vue'
 import { ref } from 'vue'
-const status = ref(["Bocciato","Bocciata","Bocciato"])
+const status = ref(["Failed","Failed","Failed"])
 
 function setStatus(text,index){
   status.value[index] = text
@@ -51,17 +51,38 @@ function setStatus(text,index){
 
         </div>
         <button @click="setStatus('Passed!',2)" class="approved"> Approve </button>
-        <button @click="setStatus('Failed..',2)" class="bocciato"> Do not approve </button>
+        <button @click="setStatus('Failed',2)" class="bocciato"> Do not approve </button>
+        <div v-if="status[2] != 'Failed'" class="flex" style="flex-direction: column;">
+          <p>Write A Note:</p>
+          <input type="text" class="ta"> 
+
+        </div>
 
         
 
       </div>
     </div>
-    <!-- <img v-if="status[0] == 'Bocciato' || status[1] == 'Bocciato' || status[2] == 'Bocciato' " src="../assets/sad1.png" alt=""> -->
+    
   </div>
 </template>
 
 <style>
+
+.ta{
+  margin: 4px;
+  border-radius: 10px;
+  border:none;
+  background-color: #e7e6e6;
+  height: 45px;
+  width: 75%;
+  padding: 19px;
+  text-decoration: underline;
+}
+
+.ta:focus{
+  border: none;
+  outline: none;
+}
 .approved{
   width: 130px;
   height: 38px;
@@ -107,8 +128,8 @@ transition: background-color 120ms linear;
 
 }
 .box {
-  width: 370px;
-  height: 370px;
+  width: 390px;
+  height: 390px;
   flex-direction: column;
   background-color: #f3f3f3;
   justify-content: space-between;
