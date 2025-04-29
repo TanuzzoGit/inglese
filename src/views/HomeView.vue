@@ -18,7 +18,7 @@ const studname = ref()
 let tasks = [{nickname:"TANUZZO",name:"Gaetano",assignment:"Make A Website About SQL Injection",img:"../assets/foto.jpeg"},
 {nickname:"SCORDIAGIRL",name:"Sofia",assignment:"Write A Presentation About SQL Injection",img:"../assets/foto1.jpeg"}, 
 {nickname:"MESSI",name:"Elia",assignment:"Talk About SQL Injection",img:"../assets/foto2.jpeg"},]
-if(JSON.parse(localStorage.getItem('task')).length == 0){
+if(JSON.parse(localStorage.getItem('task')).length == 0 || localStorage.getItem('task') == null){
   localStorage.setItem('task', JSON.stringify(tasks))
 }
 
