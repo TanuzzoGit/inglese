@@ -18,10 +18,14 @@ import { store } from '@/main';
 import SvgIcon from '@jamescoyle/vue-icon'
 import { mdiLogout  } from '@mdi/js'
 let path = mdiLogout
-
+let task = JSON.parse(localStorage.getItem('task'))
+console.log(task)
 function logout(){
     console.log("button")
-    store.commit('log')
-    window.location.reload()
+    store.commit('logout')
+    localStorage.setItem("auth",false)
+    console.log(localStorage.getItem("auth"))
+    window.location.href = "/login"
+
 }
 </script>

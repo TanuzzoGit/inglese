@@ -11,9 +11,11 @@ export const store = createStore({
   mutations: {  
     log(state) {
       state.auth= true
+      localStorage.setItem("auth",true)
     },
     logout(state) {
       state.auth= false
+      localStorage.setItem("auth",false)
     }
   },
   getters:{

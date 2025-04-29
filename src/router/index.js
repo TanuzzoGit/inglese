@@ -27,7 +27,7 @@ const router = createRouter({
 router.beforeEach((to, from) => {
   // instead of having to check every route record with
   // to.matched.some(record => record.meta.requiresAuth)
-  if (to.meta.auth && store.getters.getAuth == false) {
+  if (to.meta.auth && localStorage.getItem('auth') == false) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
 

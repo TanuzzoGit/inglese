@@ -1,77 +1,76 @@
 <script setup>
 import TheWelcome from '../components/TheWelcome.vue'
-import { ref } from 'vue'
-const status = ref(["Failed","Failed","Failed"])
 
-function setStatus(text,index){
+
+
+import { ref } from 'vue'
+import AssignBox from '@/components/AssignBox.vue'
+const status = ref(["Failed", "Failed", "Failed"])
+
+function setStatus(text, index) {
   status.value[index] = text
+}
+const quest = ref()
+const studnick = ref()
+const studname = ref()
+
+
+let tasks = [{nickname:"TANUZZO",name:"Gaetano",assignment:"Make A Website About SQL Injection",img:"../assets/foto.jpeg"},
+{nickname:"SCORDIAGIRL",name:"Sofia",assignment:"Write A Presentation About SQL Injection",img:"../assets/foto1.jpeg"}, 
+{nickname:"MESSI",name:"Elia",assignment:"Talk About SQL Injection",img:"../assets/foto2.jpeg"},]
+if(JSON.parse(localStorage.getItem('task')).length == 0){
+  localStorage.setItem('task', JSON.stringify(tasks))
+}
+
+const quests = ref(JSON.parse(localStorage.getItem('task')))
+function addAssignment(){
+  localStorage.setItem('task', JSON.stringify([...JSON.parse(localStorage.getItem('task')),{
+    name: studname.value,
+    nickname: studnick.value,
+    assignment: quest.value
+  }]))
+  quests.value = JSON.parse(localStorage.getItem('task'))
+  console.log(localStorage.getItem('task'))
 }
 </script>
 
 <template>
   <div style="position: relative;top: 170px; flex-direction: column;" class="flex">
     <TheWelcome />
-    <div class="flex">
+    <div class="flex column">
 
-      <div class="box flex ">
-        <p style="font-weight: 500;"> {{ status[0] }}</p>
-        <div class="flex" style="flex-direction: column;">
-        <img class="pfp" src="../assets/foto.jpeg" alt="">
-        <p style="z-index: 999;font-weight: 800; margin-top: 8px;"> TANUZZO </p>
-        <p style="z-index: 999;font-weight: 400; margin-top: 8px;"> Gaetano </p>
-      </div>
-      <button @click="setStatus('Passed!',0)" class="approved"> Approve </button>
-      <button @click="setStatus('Failed',0)" class="bocciato"> Do not approve </button>
-
-
-         
-      </div>
-      <div class="box flex ">
-        <p style="font-weight: 500;"> {{ status[1] }}</p>
-
-        <div class="flex" style="flex-direction: column;">
-          <img class="pfp" src="../assets/foto1.jpeg" alt="">
-          <p style="z-index: 999;font-weight: 800; margin-top: 8px;"> SCORDIAGIRL </p>
-          <p style="z-index: 999;font-weight: 400; margin-top: 8px;"> Sofia </p>
-
-        </div>
-        <button @click="setStatus('Passed!',1)" class="approved"> Approve </button>
-      <button @click="setStatus('Failed',1)" class="bocciato"> Do not approve </button>
-
-
-      </div>
-      <div class="box flex ">
-        <p style="font-weight: 500;"> {{ status[2] }}</p>
-
-        <div class="flex" style="flex-direction: column;">
-          <img class="pfp" src="../assets/foto2.jpeg" alt="">
-          <p style="z-index: 999;font-weight: 800; margin-top: 8px;"> MESSI </p>
-        <p style="z-index: 999;font-weight: 400; margin-top: 8px;"> Elia </p>
-
-
-        </div>
-        <button @click="setStatus('Passed!',2)" class="approved"> Approve </button>
-        <button @click="setStatus('Failed',2)" class="bocciato"> Do not approve </button>
-        <!-- <div v-if="status[2] != 'Failed'" class="flex" style="flex-direction: column;">
-          <p>Write A Note:</p>
-          <input type="text" class="ta"> 
-
-        </div> -->
-
-        
-
-      </div>
+      
+      
+      <AssignBox  v-for="assignment in quests" :name="assignment.name" :nickname="assignment.nickname" :assignment="assignment.assignment" :img="assignment.img"/>
     </div>
-    
+    <div class="box flex" style="margin: 14px;height: 390px;width: 500px;">
+      <h1> Add an Assignment</h1>
+      <div class="flex">
+        <p>Student Name:</p>
+        <input type="text" v-model="studname" class="ta">
+      </div>
+      <div class="flex">
+        <p>Also known as:</p>
+        <input type="text" v-model="studnick" class="ta">
+      </div>
+      <div class="flex">
+            <p>Assignment:</p>
+          <input type="text" v-model="quest" class="ta">
+        </div>
+        <button class="approved" @click="addAssignment()" style="width: 50px;height: 50px;"> + </button>
+    </div>
+
   </div>
 </template>
 
 <style>
-
-.ta{
+p{
+  text-align: center;
+}
+.ta {
   margin: 4px;
   border-radius: 10px;
-  border:none;
+  border: none;
   background-color: #e7e6e6;
   height: 45px;
   width: 75%;
@@ -79,11 +78,12 @@ function setStatus(text,index){
   text-decoration: underline;
 }
 
-.ta:focus{
+.ta:focus {
   border: none;
   outline: none;
 }
-.approved{
+
+.approved {
   width: 130px;
   height: 38px;
   margin-bottom: 4px;
@@ -92,16 +92,18 @@ function setStatus(text,index){
   border-radius: 5px;
 
 }
-.approved:focus{
+
+.approved:focus {
   border: 2px solid rgb(47, 145, 47);
 
 }
 
-.approved:hover{
-background-color: rgb(206, 235, 206);
-transition: background-color 120ms linear;
+.approved:hover {
+  background-color: rgb(206, 235, 206);
+  transition: background-color 120ms linear;
 }
-.bocciato{
+
+.bocciato {
   width: 130px;
   height: 38px;
   border: 2px solid rgb(199, 24, 24);
@@ -109,16 +111,21 @@ transition: background-color 120ms linear;
   border-radius: 5px;
 
 }
-.bocciato:focus{
+
+.bocciato:focus {
   border: 2px solid rgb(199, 24, 24);
 
 }
-.bocciato:hover{
-background-color: rgb(253, 146, 146);
-transition: background-color 120ms linear;
+.column{
+  flex-wrap: wrap;
 }
 
-.pfp{
+.bocciato:hover {
+  background-color: rgb(253, 146, 146);
+  transition: background-color 120ms linear;
+}
+
+.pfp {
   width: 120px !important;
   height: 120px !important;
   border: 2px solid violet;
@@ -127,6 +134,7 @@ transition: background-color 120ms linear;
 
 
 }
+
 .box {
   width: 390px;
   height: 390px;
@@ -138,6 +146,7 @@ transition: background-color 120ms linear;
   filter: drop-shadow(-19px 15px 24px #b1b1b1);
   margin-left: 24px;
   margin-right: 24px;
+  margin-top: 8px;
   padding: 36px;
 
 }

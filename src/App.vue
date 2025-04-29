@@ -6,7 +6,7 @@ import Nav from './components/nav.vue';
 </script>
 
 <template>
-  <Nav/>
+  <Nav style="z-index: 999;" />
   <RouterView />
 </template>
 
