@@ -28,7 +28,9 @@ export const store = createStore({
   }
 })
 const app = createApp(App)
-
+if(localStorage.getItem("auth") == null){
+  localStorage.setItem("auth",false)
+} 
 app.use(router)
 app.use(store)
 app.mount('#app')
